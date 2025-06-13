@@ -9,6 +9,14 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+#ifdef __EMSCRIPTEN__
+    #define PLATFORM_LINUX 1   // pretend it's Linux
+    #define _POSIX_VERSION 1   // enable POSIX support macros
+    #define POSIX 1
+    #define DLL_IMPORT
+    #define DLL_EXPORT
+#endif
+
 #if defined(__x86_64__) || defined(_WIN64)
 #define PLATFORM_64BITS 1
 #endif
