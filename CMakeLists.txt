@@ -27,6 +27,8 @@ add_executable(source_sdk_emscripten ${SOURCES})
 # Include directories (adjust as you add more)
 target_include_directories(source_sdk_emscripten PRIVATE
     src/public
+    src/public/tier1
+    src/public/tier0
     src/tier0
     src/tier1
     src/tier2
