@@ -41,7 +41,7 @@ typedef unsigned char byte;
 // wchar
 // wchar is a single character of text (currently 16 bits, as all of our text is
 // Unicode).  Use this whenever you mean a piece of text (for example, in a string).
-typedef wchar_t wchar;
+
 //typedef char wchar;
 
 // __WFILE__
