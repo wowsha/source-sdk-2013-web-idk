@@ -1,33 +1,36 @@
 name: Build Source SDK WASM
 
 on:
+  workflow_dispatch:      # allows manual trigger from GitHub UI
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Emscripten
-      run: |
-        git clone https://github.com/emscripten-core/emsdk.git
-        cd emsdk
-        ./emsdk install latest
-        ./emsdk activate latest
-        source ./emsdk_env.sh
-    - name: Build with Emscripten
-      run: |
-        source emsdk/emsdk_env.sh
-        mkdir -p build
-        cd build
-        emcmake cmake ..
-        emmake make
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: wasm-build
-        path: build/source_sdk_emscripten.wasm
+      - uses: actions/checkout@v4
+      - name: Setup Emscripten
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source ./emsdk_env.sh
+      - name: Build with Emscripten
+        run: |
+          source emsdk/emsdk_env.sh
+          mkdir -p build
+          cd build
+          emcmake cmake ..
+          emmake make
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-build
+          path: build/source_sdk_emscripten.wasm
