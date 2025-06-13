@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup Emscripten
       run: |
         git clone https://github.com/emscripten-core/emsdk.git
@@ -27,7 +27,7 @@ jobs:
         emcmake cmake ..
         emmake make
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: wasm-build
         path: build/source_sdk_emscripten.wasm
